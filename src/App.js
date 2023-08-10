@@ -1,28 +1,74 @@
-import "./App.css"
-import React, { Component } from 'react'
-import Navbar from "./components/Navbar"
-import News from "./components/News"
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
+import "./App.css";
+import React, { Component } from "react";
+import Navbar from "./components/Navbar";
+import News from "./components/News";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
 
 export default class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-      <div>
-        <Navbar/>
-        <Routes>
-          <Route exact path = "/" element  = {<News key={"Top Headlines"} title="Top Headlines"  country='in'/>} />
-          <Route exact path = "/business"  element = {<News key={"Business"} title="Business"  country='in' cat="business"/>} />
-          <Route exact path = "/entertainment"  element = {<News key={"Entertainment"} title="Entertainment"  country='in' cat="entertainment"/>} />
-          <Route exact path = "/general"  element = {<News key={"General"} title="General News"  country='in' cat="general"/>} />
-          <Route exact path = "/health"  element = {<News key={"Health"} title="Health"  country='in' cat="health"/>} />
-          <Route exact path = "/science"  element = {<News key={"Science"} title="Science"  country='in' cat="science"/>} />
-          <Route exact path = "/sports"  element = {<News key={"Sports"} title="Sports"  country='in' cat="sports"/>} />
-          <Route exact path = "/technology"  element = {<News key={"Technology"} title="Technology"  country='in' cat="technology"/>} />
-        </Routes>
-      </div>
-      </BrowserRouter>
-    )
-  }
+	constructor() {
+		super();
+		this.state = {
+			progress: 10,
+		};
+	}
+
+	setProgress = (progress) => {
+		this.setState({ progress: progress });
+	};
+
+	render() {
+		return (
+			<BrowserRouter>
+				<div>
+					<Navbar />
+					<LoadingBar color="#f11946" progress={this.state.progress} onLoaderFinished={() => this.setProgress(0)} />
+					<Routes>
+						<Route
+							exact
+							path="/"
+							element={<News setProgress={this.setProgress} key={"Top Headlines"} title="Top Headlines" country="in" />}
+						/>
+						<Route
+							exact
+							path="/business"
+							element={<News setProgress={this.setProgress} key={"Business"} title="Business" country="in" cat="business" />}
+						/>
+						<Route
+							exact
+							path="/entertainment"
+							element={
+								<News setProgress={this.setProgress} key={"Entertainment"} title="Entertainment" country="in" cat="entertainment" />
+							}
+						/>
+						<Route
+							exact
+							path="/general"
+							element={<News setProgress={this.setProgress} key={"General"} title="General News" country="in" cat="general" />}
+						/>
+						<Route
+							exact
+							path="/health"
+							element={<News setProgress={this.setProgress} key={"Health"} title="Health" country="in" cat="health" />}
+						/>
+						<Route
+							exact
+							path="/science"
+							element={<News setProgress={this.setProgress} key={"Science"} title="Science" country="in" cat="science" />}
+						/>
+						<Route
+							exact
+							path="/sports"
+							element={<News setProgress={this.setProgress} key={"Sports"} title="Sports" country="in" cat="sports" />}
+						/>
+						<Route
+							exact
+							path="/technology"
+							element={<News setProgress={this.setProgress} key={"Technology"} title="Technology" country="in" cat="technology" />}
+						/>
+					</Routes>
+				</div>
+			</BrowserRouter>
+		);
+	}
 }
