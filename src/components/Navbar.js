@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary">
+		<nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary">
 			<div className="container-fluid">
 				<a className="navbar-brand" href="/">
 					{props.title}
@@ -56,6 +56,11 @@ export default function Navbar(props) {
 							<Link className="nav-link" to="/technology">
 								Technology
 							</Link>
+						</li>
+						<li className="nav-item">
+							<a className="nav-link" href={`https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=${process.env.REACT_APP_NEWSAPP_APIKEY}&page=1&pageSize=10`}>
+								Test API
+							</a>
 						</li>
 						<li className="nav-item dropdown">
 							<a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -39,13 +39,13 @@ export default function News(props) {
 
 	useEffect(() => {
 		loadFirstPage();
-		console.log("running use effect ... ");
+		// eslint-disable-next-line
 	}, []);
 
 	return (
 		<>
-			<h1 className="text-center my-4">{props.title}</h1>
-			<h5 className="text-center">{totalResults} Result found</h5>
+			<h1 className="text-center mt-5 mb-3">{props.title}</h1>
+			<div className="text-end mx-5">{totalResults} Result found</div>
 			<InfiniteScroll
 				dataLength={articles.length}
 				next={async () => {
@@ -56,8 +56,8 @@ export default function News(props) {
 			>
 				<div className="container">
 					<div className="row">
-						{articles.map((element, index) => {
-							return <Newsitem key={index} title={element.title} description={element.description} imageurl={element.urlToImage} url={element.url} time={element.publishedAt} />;
+						{articles.map((element) => {
+							return <Newsitem key={element.url} title={element.title} description={element.description} imageurl={element.urlToImage} url={element.url} time={element.publishedAt} />;
 						})}
 					</div>
 				</div>
